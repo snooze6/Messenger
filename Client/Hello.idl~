@@ -1,0 +1,8 @@
+module HelloApp
+{
+  interface Hello
+  {
+  string sayHello(string param);
+  oneway void shutdown();
+  };
+};
