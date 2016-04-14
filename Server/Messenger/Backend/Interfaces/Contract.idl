@@ -1,0 +1,18 @@
+// omniidl -bpython Contract.idl
+
+module Messenger {
+  interface ClientContract{
+    string getName();
+    string sendMsg(in string msg);
+  };
+
+  interface ServerContract{
+    boolean register(in ClientContract client);
+    ClientContract getUser(in string username);
+    string Hello(in string mesg);
+  };
+
+  interface Echo {
+    string echoString(in string mesg);
+  };
+};
