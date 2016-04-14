@@ -9,6 +9,7 @@ class Echo_i(Example__POA.Echo):
 
 class Server(object):
     def doit(self):
+        print (sys.argv)
         orb = CORBA.ORB_init(sys.argv, CORBA.ORB_ID)
         poa = orb.resolve_initial_references("RootPOA")
         ei = Echo_i()

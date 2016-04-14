@@ -1,27 +1,26 @@
-import HelloApp.*;
-import org.omg.CosNaming.*;
-import org.omg.CosNaming.NamingContextPackage.*;
-import org.omg.CORBA.*;
-import org.omg.PortableServer.*;
+import Example.Echo;
+import Example.EchoHelper;
+import Example.EchoPOA;
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
 import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
 
 import java.util.Properties;
 
-class HelloImpl extends HelloPOA {
+class HelloImpl extends EchoPOA {
   private ORB orb;
 
   public void setORB(ORB orb_val) {
     orb = orb_val; 
   }
-    
-  // implement sayHello() method
-  public String sayHello(String param) {
-    System.out.println("Me han dicho " + param);return "\nHello world !!\n";
-  }
-    
-  // implement shutdown() method
-  public void shutdown() {
-    orb.shutdown(true);
+
+  @Override
+  public String echoString(String mesg) {
+    System.out.println("Communication sucessfull: "+mesg);
+    return mesg;
   }
 }
 
@@ -47,7 +46,7 @@ public class HelloServer {
 
       // get object reference from the servant
       org.omg.CORBA.Object ref = rootpoa.servant_to_reference(helloImpl);
-      Hello href = HelloHelper.narrow(ref);
+      Echo href = EchoHelper.narrow(ref);
 	  
       // get the root naming context
       // NameService invokes the name service

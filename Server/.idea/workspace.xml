@@ -3,26 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="75406b18-5d2f-4129-963e-0c96701753cb" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/Makefile" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/example_echo_idl.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/Example/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/ServerMgr.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/Example__POA/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/ServerMgr.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/echo_example.idl" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/example_echo.idl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/ServerMgr.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/ServerMgr.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/Example__POA/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example2/Example/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Backend/Example/__init__.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example2/Makefile" afterPath="$PROJECT_DIR$/Makefile" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example2/example_echo.idl" afterPath="$PROJECT_DIR$/example_echo.idl" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/untitled.iml" afterPath="$PROJECT_DIR$/.idea/Messenger-Server.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example/example_echo_idl.py" afterPath="$PROJECT_DIR$/example_echo_idl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example/Example__POA/__init__.py" afterPath="$PROJECT_DIR$/Example__POA/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ServerMgr.py" afterPath="$PROJECT_DIR$/ServerMgr.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ClientMgr.py" afterPath="$PROJECT_DIR$/ClientMgr.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example/Example/__init__.py" afterPath="$PROJECT_DIR$/Example/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ClientMgr.py" afterPath="$PROJECT_DIR$/ClientMgr.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ServerMgr.py" afterPath="$PROJECT_DIR$/ServerMgr.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example2/example_echo.idl" afterPath="$PROJECT_DIR$/example_echo.idl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example2/Makefile" afterPath="$PROJECT_DIR$/Makefile" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example/Example/__init__.py" afterPath="$PROJECT_DIR$/Example/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Backend/Example/example_echo_idl.py" afterPath="$PROJECT_DIR$/example_echo_idl.py" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,7 +42,7 @@
     <SUITE FILE_PATH="coverage/untitled$Run.coverage" NAME="Run Coverage Results" MODIFIED="1460562849227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$SQLite.coverage" NAME="SQLite Coverage Results" MODIFIED="1460565923001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$ServerMgr__2_.coverage" NAME="ServerMgr (2) Coverage Results" MODIFIED="1460643262844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Backend/Example2/Backend" />
-    <SUITE FILE_PATH="coverage/Server$Server.coverage" NAME="Server Coverage Results" MODIFIED="1460644624655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Server$Server.coverage" NAME="Server Coverage Results" MODIFIED="1460647113511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$Client.coverage" NAME="Client Coverage Results" MODIFIED="1460643861546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -67,8 +67,28 @@
       <file leaf-file-name="ClientMgr.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ClientMgr.py">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerMgr.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ServerMgr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="example_echo.idl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example_echo.idl">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -112,6 +132,7 @@
         <option value="$PROJECT_DIR$/Backend/Example2/ServerMgr.py" />
         <option value="$PROJECT_DIR$/ClientMgr.py" />
         <option value="$PROJECT_DIR$/ServerMgr.py" />
+        <option value="$PROJECT_DIR$/example_echo.idl" />
       </list>
     </option>
   </component>
@@ -122,9 +143,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-29" />
-    <option name="width" value="1920" />
-    <option name="height" value="1109" />
+    <option name="width" value="960" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -152,6 +172,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -186,7 +207,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,7 +230,7 @@
       <recent name="$PROJECT_DIR$/Backend/Example" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Client">
+  <component name="RunManager" selected="Python.Server">
     <configuration default="false" name="ServerMgr" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -540,18 +560,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-29" width="1920" height="1109" extended-state="6" />
+    <frame x="0" y="0" width="960" height="1080" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17838125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36819172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21308225" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23290387" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23253389" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958376" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -619,13 +639,6 @@
     <entry file="file://$PROJECT_DIR$/Backend/Interfaces/Contract.idl" />
     <entry file="file://$PROJECT_DIR$/Backend/Implementation/Client.py" />
     <entry file="file://$PROJECT_DIR$/Backend/Example/example_echo.idl" />
-    <entry file="file://$PROJECT_DIR$/example_echo.idl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Backend/Example/Makefile" />
     <entry file="file://$PROJECT_DIR$/Backend/Interfaces/Makefile" />
     <entry file="file://$PROJECT_DIR$/Backend/Example/__init__.py" />
@@ -653,7 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ServerMgr.py" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -662,10 +674,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ClientMgr.py">
+    <entry file="file://$PROJECT_DIR$/example_echo.idl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ServerMgr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClientMgr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
           <folding />
         </state>
       </provider>
