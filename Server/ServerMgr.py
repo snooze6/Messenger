@@ -1,12 +1,8 @@
 import sys
 from omniORB import CORBA, PortableServer
 import CosNaming
-import Example, Example__POA
-
-class Echo_i(Example__POA.Echo):
-    def echoString(self, mesg):
-        print("echoString() called with message:"+mesg)
-        return mesg
+import Messenger, Messenger__POA
+from Client import Echo_i
 
 class Server(object):
     def doit(self):

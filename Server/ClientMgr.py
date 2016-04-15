@@ -2,7 +2,7 @@ import sys
 
 import CosNaming
 from omniORB import CORBA
-import Example
+import Messenger
 
 def doit():
     # Initialise the ORB and find the root POA
@@ -29,7 +29,7 @@ def doit():
         sys.exit(1)
 
     # Narrow the object to an Example::Echo
-    eo = obj._narrow(Example.Echo)
+    eo = obj._narrow(Messenger.Echo)
 
     if eo is None:
         print "Object reference is not an Example::Echo"
