@@ -1,0 +1,26 @@
+// omniidl -bpython Contract.idl
+
+module Messenger {
+  interface ClientContract{
+    string getName();
+    string sendMsg(in string msg);
+  };
+
+  struct credentials{
+    string username;
+    string password;
+  };
+
+  typedef sequence<ClientContract> usuarios;
+
+  interface ServerContract{
+    boolean login(in credentials cred);
+    boolean register(in credentials cred);
+    ClientContract getUser(in string username);
+    usuarios getFriends(in string username);
+  };
+
+  interface Echo {
+    string echoString(in string mesg);
+  };
+};
