@@ -29,12 +29,12 @@ public class HelloServer {
 
   public static void main(String args[]) {
     try{
-      // create and initialize the ORB
+      //create and initialize the ORB
       //System.out.println(args);
       //ORB orb = ORB.init(args, null);
       Properties aProperties = new Properties();
       aProperties.put("org.omg.CORBA.ORBInitialHost", "localhost");
-      aProperties.put("org.omg.CORBA.ORBInitialPort", "2930");
+      aProperties.put("org.omg.CORBA.ORBInitialPort", "2809");
       ORB orb = ORB.init((String[]) null, aProperties);
       // get reference to rootpoa & activate the POAManager
       POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
@@ -50,8 +50,7 @@ public class HelloServer {
 	  
       // get the root naming context
       // NameService invokes the name service
-      org.omg.CORBA.Object objRef =
-          orb.resolve_initial_references("NameService");
+      org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
       // Use NamingContextExt which is part of the Interoperable
       // Naming Service (INS) specification.
       NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
@@ -74,7 +73,6 @@ public class HelloServer {
 	finally{
 	System.out.println("Cuernos, joder, hostia, mierda, cuernos --------------------------___>");
 }
-	  
       System.out.println("HelloServer Exiting ...");
 	
   }
