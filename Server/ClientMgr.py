@@ -7,7 +7,7 @@ import Messenger
 def doit():
     # Initialise the ORB and find the root POA
     # sys.argv.extend(('-ORBtraceLevel', '25'))
-    sys.argv.extend(("-ORBInitRef", "NameService=corbaname::127.0.0.1"))  # localhost"))
+    sys.argv.extend(("-ORBInitRef", "NameService=corbaname::192.168.43.15"))  # localhost"))
     orb = CORBA.ORB_init(sys.argv, CORBA.ORB_ID)
 
     # Obtain a reference to the root naming context

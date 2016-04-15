@@ -1,6 +1,6 @@
-import Example.Echo;
-import Example.EchoHelper;
-import Example.EchoPOA;
+import Messenger.Echo;
+import Messenger.EchoHelper;
+import Messenger.EchoPOA;
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContextExt;

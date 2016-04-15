@@ -1,10 +1,10 @@
-import Example.Echo;
-import Example.EchoHelper;
+
+import Messenger.EchoHelper;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.Object;
 import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
-
+import Messenger.Echo;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class HelloClient
         // create and initialize the ORB
 	    //ORB orb = ORB.init(args, null);
           Properties aProperties = new Properties();
-          aProperties.put("org.omg.CORBA.ORBInitialHost", "localhost");
+          aProperties.put("org.omg.CORBA.ORBInitialHost", "192.168.43.15");
           aProperties.put("org.omg.CORBA.ORBInitialPort", "2809");
           ORB orb = ORB.init((String[]) null, aProperties);
 
@@ -42,7 +42,7 @@ public class HelloClient
               NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 
               // resolve the Object Reference in Naming
-              String name = "Hello";
+              String name = "test.my_context/ExampleEcho.Object";
               helloImpl = EchoHelper.narrow(ncRef.resolve_str(name));
 
               System.out.println("Obtained a handle on server object: " + helloImpl);
