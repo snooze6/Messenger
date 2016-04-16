@@ -19,6 +19,7 @@ module Messenger {
     boolean login(in credentials cred);
     boolean register(in credentials cred);
     ClientContract getUser(in string username);
+    // Soon to be deprecated
     usuarios getFriends(in string username);
   };
 
