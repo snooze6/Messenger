@@ -2,9 +2,10 @@ import sys
 from omniORB import CORBA, PortableServer
 import CosNaming
 import Messenger, Messenger__POA
-from Client import Echo_i
+from Implementaciones import Echo_i, Server
 
-class Server(object):
+
+class ServerMgr(object):
     def doit(self):
         # Initialise the ORB and find the root POA
         # sys.argv.extend(('-ORBtraceLevel', '25'))
@@ -15,10 +16,10 @@ class Server(object):
         poaManager.activate()
 
         # Create an instance of Echo_i and an Echo object reference
-        ei = Echo_i()
-        eo = ei._this()
+        server = Server()
+        serverref = server._this()
 
-        ref = poa.servant_to_reference(ei)
+        ref = poa.servant_to_reference(server)
 
         # Obtain a reference to the root naming context
         obj = orb.resolve_initial_references("NameService")
@@ -44,13 +45,13 @@ class Server(object):
                 sys.exit(1)
 
         # Bind the Echo object to the test context
-        name = [CosNaming.NameComponent("ExampleEcho", "Object")]
+        name = [CosNaming.NameComponent("Server", "Object")]
         try:
-            testContext.bind(name, eo)
+            testContext.bind(name, serverref)
             print "New ExampleEcho object bound"
 
         except CosNaming.NamingContext.AlreadyBound:
-            testContext.rebind(name, eo)
+            testContext.rebind(name, serverref)
             print "ExampleEcho binding already existed -- rebound"
 
         # Activate the POA
@@ -62,5 +63,5 @@ class Server(object):
 
 if __name__ == "__main__":
     print("< CORBA SERVER>")
-    Server().doit()
+    ServerMgr().doit()
     print("</CORBA SERVER>")

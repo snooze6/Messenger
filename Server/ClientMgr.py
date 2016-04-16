@@ -1,8 +1,10 @@
 import sys
 
 import CosNaming
+import omniORB
 from omniORB import CORBA
 import Messenger
+
 
 def doit():
     # Initialise the ORB and find the root POA
@@ -20,7 +22,7 @@ def doit():
 
     # Resolve the name "test.my_context/ExampleEcho.Object"
     name = [CosNaming.NameComponent("test", "my_context"),
-            CosNaming.NameComponent("ExampleEcho", "Object")]
+            CosNaming.NameComponent("Server", "Object")]
     try:
         obj = rootContext.resolve(name)
 
@@ -29,17 +31,25 @@ def doit():
         sys.exit(1)
 
     # Narrow the object to an Example::Echo
-    eo = obj._narrow(Messenger.Echo)
+    eo = obj._narrow(Messenger.ServerContract)
 
     if eo is None:
         print "Object reference is not an Example::Echo"
         sys.exit(1)
 
     # Invoke the echoString operation
-    message = "Hello from Python"
-    result = eo.echoString(message)
+    eo.login(Messenger.credentials("juan","juan"))
+    eo.register(Messenger.credentials("juan","juan"))
+    try:
+        eo.getUser("juan")
+    except omniORB.CORBA.UNKNOWN:
+        print("No hay usuario")
+    try:
+        eo.getFriends("juan")
+    except omniORB.CORBA.UNKNOWN:
+        print("No hay usuario")
 
-    print "I said '%s'. The object said '%s'." % (message, result)
+    # print "I said '%s'. The object said '%s'." % (message, result)
 
 if __name__ == "__main__":
     print("< CORBA CLIENT>")
