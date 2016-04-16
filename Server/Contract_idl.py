@@ -42,7 +42,7 @@ omniORB.registerType(ClientContract._NP_RepositoryId, _0_Messenger._d_ClientCont
 
 # ClientContract operations and attributes
 ClientContract._d_getName = ((), ((omniORB.tcInternal.tv_string,0), ), None)
-ClientContract._d_sendMsg = (((omniORB.tcInternal.tv_string,0), ), ((omniORB.tcInternal.tv_string,0), ), None)
+ClientContract._d_sendMsg = (((omniORB.tcInternal.tv_string,0), (omniORB.tcInternal.tv_string,0)), ((omniORB.tcInternal.tv_string,0), ), None)
 ClientContract._d_transfer = (((omniORB.tcInternal.tv_string,0), ), ((omniORB.tcInternal.tv_string,0), ), None)
 
 # ClientContract object reference

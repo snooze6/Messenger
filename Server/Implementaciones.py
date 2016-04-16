@@ -13,8 +13,9 @@ class Client(Messenger__POA.ClientContract):
     def getName(self):
         return self.username
 
-    def sendMsg(self, msg):
+    def sendMsg(self, username, msg):
         print("Mensaje recibido: " + msg)
+        print("        remitente:" + username)
         return msg
 
     def transfer(self, path):
@@ -62,7 +63,7 @@ class Server(Messenger__POA.ServerContract):
         return friends
 
     def _bindUser(self, user):
-        print(user)
+        # print(user)
         orb = CORBA.ORB_init(("-ORBInitRef", "NameService=corbaname::127.0.0.1"), CORBA.ORB_ID)
         ior = user.ior
         obj = orb.string_to_object(ior)

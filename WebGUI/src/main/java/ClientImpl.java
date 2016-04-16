@@ -25,8 +25,9 @@ public class ClientImpl extends ClientContractPOA{
         return name;
     }
 
-    public String sendMsg(String msg) {
+    public String sendMsg(String username, String msg) {
         System.out.println("-- Recibido mensaje: "+msg);
+        System.out.println("-- De: "+username);
         return msg;
     }
 
