@@ -1,0 +1,8 @@
+.idea/
+
+.Server/.idea/
+.Server/*.pyc
+
+.Client/.idea/
+
+*~
