@@ -7,6 +7,9 @@ from Conf import dbpath, op_sucess, op_exists, op_failed
 
 
 class User(object):
+    """
+    Clase que encapsula a un usuario
+    """
     def __init__(self, username, password, ior):
         self.username = username
         self.password = password
@@ -15,6 +18,10 @@ class User(object):
 
 class DAOGeneral(object):
     def __init__(self, path=dbpath):
+        """
+        Se conecta a la base de datos y la inicia si no existe
+        :param path: Ruta al archivo de base de datos
+        """
         super(DAOGeneral, self).__init__()
         self.path = path
         print("-- Creating new DAOUsers")
