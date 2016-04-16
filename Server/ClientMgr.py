@@ -6,7 +6,7 @@ from omniORB import CORBA
 
 import Messenger
 from Conf import completename, dbpath
-from SQLite import DAO
+from SQLite import DAOUsers
 
 
 class ClientMgr(object):
@@ -35,7 +35,7 @@ class ClientMgr(object):
             print("++ Object reference is not an Server")
             sys.exit(1)
 
-        self.dao = DAO(dbpath)
+        self.dao = DAOUsers(dbpath)
 
     def doit(self):
         print("-- Testing the thing")

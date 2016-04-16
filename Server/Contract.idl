@@ -4,6 +4,7 @@ module Messenger {
   interface ClientContract{
     string getName();
     string sendMsg(in string msg);
+    string transfer(in string path);
   };
 
   struct credentials{

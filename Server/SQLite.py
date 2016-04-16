@@ -12,9 +12,10 @@ class User(object):
         self.password = password
         self.ior = ior
 
-class DAO(object):
+
+class DAOGeneral(object):
     def __init__(self, path=dbpath):
-        super(DAO, self).__init__()
+        super(DAOGeneral, self).__init__()
         self.path = path
         print("-- Creating new DAOUsers")
         if not os.path.exists(path):
@@ -31,23 +32,59 @@ class DAO(object):
         print("-- Connected to database")
         self.conn.close()
 
+    def _createtables(self):
+        print("  -- Creando tablas")
+        self.conn = sqlite3.connect(self.path)
+        c = self.conn.cursor()
+        c.execute(
+            "CREATE TABLE users(" +
+            "name VARCHAR(256)," +
+            "pass VARCHAR(256)," +
+            "ior  VARCHAR(512)," +
+            "PRIMARY KEY (name)" +
+            ");"
+        )
+        c = self.conn.cursor()
+        c.execute(
+            "CREATE TABLE friends(" +
+            "user1 VARCHAR(256)," +
+            "user2 VARCHAR(256)," +
+            "PRIMARY KEY (user1, user2)" +
+            "FOREIGN KEY (user1) REFERENCES users(name)"+
+            "FOREIGN KEY (user2) REFERENCES users(name)"+
+            ");"
+        )
+        self.conn.commit()
+        self.conn.close()
+
+    def _deletedb(self):
+        print("** Eliminando base de datos")
+        os.remove(self.path)
+
+
+class DAOUsers(DAOGeneral):
+    def __init__(self, path=dbpath):
+        super(DAOUsers, self).__init__(path)
+
     def getUser(self, user):
         print("-- Buscando usuario " + user)
         self.conn = sqlite3.connect(self.path)
         c = self.conn.cursor()
         result = c.execute('SELECT * FROM users WHERE name LIKE "' + user + '" LIMIT 1;')
         for j in result:
-            print ("  -- Usuario: "+j[0]+" - "+j[1]+" - "+j[2])
+            print ("  -- Usuario: " + j[0] + " - " + j[1] + " - " + j[2])
             self.conn.close()
             return User(j[0], j[1], j[2])
+        self.conn.close()
         return None
+
 
     def registerUser(self, user):
         self.conn = sqlite3.connect(self.path)
         print("-- Registrando usuario " + user.username + " - contrasena " + user.password)
         c = self.conn.cursor()
         try:
-            c.execute('INSERT INTO users VALUES ("' + user.username + '","' + user.password + '","'+ user.ior +'")')
+            c.execute('INSERT INTO users VALUES ("' + user.username + '","' + user.password + '","' + user.ior + '")')
             res = op_sucess
         except sqlite3.IntegrityError:
             print ('++ Usuario ya existe')
@@ -63,7 +100,7 @@ class DAO(object):
         self.conn = sqlite3.connect(self.path)
         print("-- Actualizando usuario " + user.username + " - contrasena " + user.password + " - " + user.ior)
         c = self.conn.cursor()
-        string = 'UPDATE users SET ior="'+user.ior+'" WHERE name LIKE "'+user.username+'";'
+        string = 'UPDATE users SET ior="' + user.ior + '" WHERE name LIKE "' + user.username + '";'
         # print string
         c.execute(string)
         res = op_sucess
@@ -75,32 +112,56 @@ class DAO(object):
         self.conn = sqlite3.connect(self.path)
         print("-- Actualizando usuario " + user.username + " - contrasena " + user.password + " - " + user.ior)
         c = self.conn.cursor()
-        string = 'UPDATE users SET pass="'+user.password+'", ior="'+user.ior+'" WHERE name LIKE "'+user.username+'";'
+        string = 'UPDATE users SET pass="' + user.password + '", ior="' + user.ior + '" WHERE name LIKE "' + user.username + '";'
         # print string
         c.execute(string)
-        res = op_sucess
+        self.conn.commit()
+        self.conn.close()
+        return op_sucess
+
+
+class DAOAmigos(DAOGeneral):
+    def __init__(self, path=dbpath):
+        super(DAOAmigos, self).__init__(path)
+
+    def areFriends(self, user1, user2):
+        print ("-- Son "+user1+" y "+user2+" amigos?")
+        self.conn = sqlite3.connect(self.path)
+        c = self.conn.cursor()
+        result = c.execute('SELECT * FROM friends WHERE user1 LIKE "'+user1+'" AND user2 LIKE "'+user2+'" LIMIT 1;')
+        for j in result:
+            self.conn.close()
+            return True
+        return False
+
+    def makeFriends(self, user1, user2):
+        print ("-- Hacer a "+user1+" y "+user2+" amigos")
+        self.conn = sqlite3.connect(self.path)
+        try:
+            c = self.conn.cursor()
+            c.execute('INSERT INTO friends VALUES ("'+user1+'", "'+user2+'");')
+            res = op_sucess
+        except sqlite3.IntegrityError:
+            res = op_exists
+        except sqlite3.Error:
+            res = op_failed
         self.conn.commit()
         self.conn.close()
         return res
 
-    def _createtables(self):
-        print("  -- Creando tablas")
+    def deleteFriends(self, user1, user2):
+        print ("-- Deshacer a "+user1+" y "+user2+" de amigos")
         self.conn = sqlite3.connect(self.path)
         c = self.conn.cursor()
-        c.execute(
-            "CREATE TABLE users(" +
-            "name VARCHAR(256)," +
-            "pass VARCHAR(256)," +
-            "ior  VARCHAR(512)," +
-            "PRIMARY KEY (name)" +
-            ");"
-        )
+        c.execute('DELETE FROM friends WHERE user1 LIKE "'+user1+'" AND user2 LIKE "'+user2+'";')
         self.conn.commit()
         self.conn.close()
+        return op_sucess
 
-    def _deletedb(self):
-        print("** Eliminando base de datos")
-        os.remove(self.path)
+
+class DAO(DAOUsers, DAOAmigos):
+    def __init__(self, path=dbpath):
+        super(DAOUsers, self).__init__(path)
 
 
 if __name__ == "__main__":
@@ -109,42 +170,48 @@ if __name__ == "__main__":
     dao = DAO('test.db')
     # dao._deletedb()
 
-    # user = dao.getUser('juan')
-    # if not user is None:
-    #     print ('-- Está')
-    #     print ("-- Usuario: " + user.username + "-" + user.password)
-    # else:
-    #     print ('-- No Está')
-    #
-    # resop = dao.registerUser(User('juan', 'nauj', 'ior'))
-    # if resop==op_sucess:
-    #     print('-- Registrado')
-    # elif resop==op_exists:
-    #     print('++ Usuario ya existe')
-    # elif resop==op_failed:
-    #     print('++ Ha fallado el registro')
-    #
-    # resop = dao.registerUser(User('pedro', 'pedro', 'ior'))
-    # if resop==op_sucess:
-    #     print('-- Registrado')
-    # elif resop==op_exists:
-    #     print('++ Usuario ya existe')
-    # elif resop==op_failed:
-    #     print('++ Ha fallado el registro')
-    #
-    # user = dao.getUser('pedro')
-    # if not user is None:
-    #     print ('-- Está')
-    #     print ("-- Usuario: " + user.username + "-" + user.password)
-    # else:
-    #     print ('-- No Está')
-
-    user = dao.getUser('asdf')
+    user = dao.getUser('juan')
     if not user is None:
         print ('-- Está')
-        print ("-- Usuario: " + user.username + " - " + user.password + " - " + user.ior)
+        print ("-- Usuario: " + user.username + "-" + user.password)
     else:
         print ('-- No Está')
-    dao._updateUser(User('asdf','asdf','asdf'))
+
+    resop = dao.registerUser(User('juan', 'nauj', 'ior'))
+    if resop==op_sucess:
+        print('-- Registrado')
+    elif resop==op_exists:
+        print('++ Usuario ya existe')
+    elif resop==op_failed:
+        print('++ Ha fallado el registro')
+
+    resop = dao.registerUser(User('pedro', 'pedro', 'ior'))
+    if resop==op_sucess:
+        print('-- Registrado')
+    elif resop==op_exists:
+        print('++ Usuario ya existe')
+    elif resop==op_failed:
+        print('++ Ha fallado el registro')
+
+    user = dao.getUser('pedro')
+    if not user is None:
+        print ('-- Está')
+        print ("-- Usuario: " + user.username + "-" + user.password)
+    else:
+        print ('-- No Está')
+
+    # user = dao.getUser('asdf')
+    # if not user is None:
+    #     print ('-- Está')
+    #     print ("-- Usuario: " + user.username + " - " + user.password + " - " + user.ior)
+    # else:
+    #     print ('-- No Está')
+    # dao._updateUser(User('asdf', 'asdf', 'asdf'))
+
+    print dao.areFriends('juan','pedro')
+    print dao.makeFriends('juan', 'pedro')
+    print dao.deleteFriends('juan','pedro')
+    print dao.deleteFriends('juan', 'pedro')
+    print dao.areFriends('juan','pedro')
 
     print("</SQLite Tester>")
