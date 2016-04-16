@@ -23,20 +23,20 @@ class Server(Messenger__POA.ServerContract):
 
     def login(self, credentials):
         if self.v:
-            print ('-- Intentando login '+credentials.username+'-'+credentials.password)
+            print ('-- Intentando login <'+credentials.username+'-'+credentials.password+'>')
         return True
 
     def register(self, credentials):
         if self.v:
-            print ('-- Intentando register'+credentials.username+'-'+credentials.password)
+            print ('-- Intentando registrar <'+credentials.username+'-'+credentials.password+'>')
         return True
 
     def getUser(self, username):
         if self.v:
-            print ('-- Intentando cojer al usuario'+username)
+            print ('-- Intentando cojer al usuario: <'+username+'>')
         return None
 
     def getFriends(self, username):
         if self.v:
-            print ('-- Intentando cojer los amigos de ' + username)
+            print ('-- Intentando cojer los amigos de <'+username+'>')
         return [None]
