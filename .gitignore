@@ -5,4 +5,7 @@ Server/*.pyc
 
 Client/.idea/
 
+WebGui/.idea/
+WebGUI/target/
+
 *~
