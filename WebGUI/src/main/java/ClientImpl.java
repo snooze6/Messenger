@@ -1,4 +1,5 @@
 import Messenger.ClientContractPOA;
+import org.omg.CORBA.ORB;
 
 /**
  * Created by snooze on 4/16/16.
@@ -7,15 +8,30 @@ import Messenger.ClientContractPOA;
 
 
 public class ClientImpl extends ClientContractPOA{
+
+    private ORB orb;
+    private String name;
+
+    public ClientImpl(String name) {
+        this.name = name;
+    }
+
+    public void setORB(ORB orb_val) {
+        orb = orb_val;
+    }
+
     public String getName() {
-        return null;
+        System.out.println("-- Pedido el nombre: "+name);
+        return name;
     }
 
     public String sendMsg(String msg) {
-        return null;
+        System.out.println("-- Recibido mensaje: "+msg);
+        return msg;
     }
 
     public String transfer(String path) {
-        return null;
+        System.out.println("-- Recibido archivo: "+path);
+        return path;
     }
 }

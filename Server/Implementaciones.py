@@ -1,4 +1,6 @@
 import Messenger, Messenger__POA
+from Conf import dbpath, op_sucess
+from SQLite import DAO, User
 
 
 class Client(Messenger__POA.ClientContract):
@@ -26,6 +28,7 @@ class Echo_i(Messenger__POA.Echo):
 class Server(Messenger__POA.ServerContract):
     def __init__(self, verbose=True):
         self.v = verbose
+        self.dao = DAO(dbpath)
         if self.v:
             print ('-- Server creado')
 
@@ -33,13 +36,13 @@ class Server(Messenger__POA.ServerContract):
         if self.v:
             print ('-- Intentando login <' + credentials.username + '-' + credentials.password + '>')
             print ('   IOR: ' + credentials.IOR)
-        return True
+        return self.dao.login(User(credentials.username, credentials.password, credentials.IOR))
 
     def register(self, credentials):
         if self.v:
             print ('-- Intentando registrar <' + credentials.username + '-' + credentials.password + '>')
             print ('   IOR: ' + credentials.IOR)
-        return True
+        return self.dao.registerUser(User(credentials.username, credentials.password, credentials.IOR)) == op_sucess
 
     def getUser(self, username):
         if self.v:
