@@ -1,47 +1,54 @@
 import sys
 
 import CosNaming
+import omniORB
 from omniORB import CORBA
+
 import Messenger
+from Conf import completename
 
-def doit():
-    # Initialise the ORB and find the root POA
-    # sys.argv.extend(('-ORBtraceLevel', '25'))
-    sys.argv.extend(("-ORBInitRef", "NameService=corbaname::192.168.43.15"))  # localhost"))
-    orb = CORBA.ORB_init(sys.argv, CORBA.ORB_ID)
 
-    # Obtain a reference to the root naming context
-    obj = orb.resolve_initial_references("NameService")
-    rootContext = obj._narrow(CosNaming.NamingContext)
+class ClientMgr(object):
+    def __init__(self):
+        print ("-- Iniciado ClientMgr")
+        # Initialise the ORB and find the root POA
+        # sys.argv.extend(('-ORBtraceLevel', '25'))
+        sys.argv.extend(("-ORBInitRef", "NameService=corbaname::127.0.0.1"))  # localhost"))
+        self.orb = CORBA.ORB_init(sys.argv, CORBA.ORB_ID)
+        # Obtain a reference to the root naming context
+        self.nameservice = self.orb.resolve_initial_references("NameService")
+        self.rootContext = self.nameservice._narrow(CosNaming.NamingContext)
+        if self.rootContext is None:
+            print("++ Failed to narrow the root naming context")
+            sys.exit(1)
 
-    if rootContext is None:
-        print "Failed to narrow the root naming context"
-        sys.exit(1)
+        try:
+            self.obj = self.rootContext.resolve(completename)
+        except CosNaming.NamingContext.NotFound, ex:
+            print("++ Server object not found in nameserver")
+            sys.exit(1)
 
-    # Resolve the name "test.my_context/ExampleEcho.Object"
-    name = [CosNaming.NameComponent("test", "my_context"),
-            CosNaming.NameComponent("ExampleEcho", "Object")]
-    try:
-        obj = rootContext.resolve(name)
+        # Narrow the object to an Example::Echo
+        self.server = self.obj._narrow(Messenger.ServerContract)
+        if self.server is None:
+            print("++ Object reference is not an Server")
+            sys.exit(1)
 
-    except CosNaming.NamingContext.NotFound, ex:
-        print "Name not found"
-        sys.exit(1)
+    def doit(self):
+        print("-- Testing the thing")
+        self.server.register(Messenger.credentials("juan", "juan","IOR"))
+        self.server.login(Messenger.credentials("juan", "juan","IOR"))
+        try:
+            self.server.getUser("juan")
+        except omniORB.CORBA.UNKNOWN:
+            print("** No hay usuario")
+        try:
+            self.server.getFriends("juan")
+        except omniORB.CORBA.UNKNOWN:
+            print("** No hay usuario")
 
-    # Narrow the object to an Example::Echo
-    eo = obj._narrow(Messenger.Echo)
-
-    if eo is None:
-        print "Object reference is not an Example::Echo"
-        sys.exit(1)
-
-    # Invoke the echoString operation
-    message = "Hello from Python"
-    result = eo.echoString(message)
-
-    print "I said '%s'. The object said '%s'." % (message, result)
 
 if __name__ == "__main__":
     print("< CORBA CLIENT>")
-    doit()
+    ClientMgr().doit()
     print("</CORBA CLIENT>")

@@ -12,6 +12,10 @@ class Client(Messenger__POA.ClientContract):
         print("Mensaje recibido: " + msg)
         return msg
 
+    def transfer(self, path):
+        print("Archivo recibido: " + path)
+        return path
+
 
 class Echo_i(Messenger__POA.Echo):
     def echoString(self, mesg):
