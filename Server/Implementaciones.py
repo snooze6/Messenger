@@ -56,7 +56,10 @@ class Server(Messenger__POA.ServerContract):
     def getFriends(self, username):
         if self.v:
             print ('-- Intentando cojer los amigos de <' + username + '>')
-        return [None]
+        friends = []
+        for j in self.dao.getFriends(username):
+            friends.append(self.getUser(j))
+        return friends
 
     def _bindUser(self, user):
         print(user)

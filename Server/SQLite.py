@@ -194,6 +194,20 @@ class DAOAmigos(DAOGeneral):
         self.conn.close()
         return ret
 
+    def getFriends(self, user):
+        print ("-- Obteniendo amigos del usuario "+user)
+        self.conn = sqlite3.connect(self.path)
+        c = self.conn.cursor()
+        string = 'SELECT user2 FROM friends WHERE user1 LIKE "'+user+'" AND user2 IN (SELECT user1 FROM friends WHERE user2 LIKE "'+user+'");'
+        # print (string)
+        result = c.execute(string)
+        ret = []
+        for j in result:
+            print ("  -- "+j[0])
+            ret.append(j[0])
+        self.conn.close()
+        return ret
+
 
 
 
@@ -246,18 +260,28 @@ if __name__ == "__main__":
     #     print ('-- No Está')
     # dao._updateUser(User('asdf', 'asdf', 'asdf'))
 
+    # # print dao.areFriends('juan','pedro')
+    # print dao.makeFriends('juan', 'pedro')
+    # # print dao.deleteFriends('juan','pedro')
+    # # print dao.deleteFriends('juan', 'pedro')
     # print dao.areFriends('juan','pedro')
-    print dao.makeFriends('juan', 'pedro')
-    # print dao.deleteFriends('juan','pedro')
-    # print dao.deleteFriends('juan', 'pedro')
-    print dao.areFriends('juan','pedro')
+    #
+    # # print dao.login(User('juan', 'nauj', 'newior'))
+    # # print dao.getUser('juan').ior
+    # # print dao.login(User('juan', 'wrong', 'wrong'))
+    #
+    # friendrequests = dao.getRequests('pedro')
+    # for j in friendrequests:
+    #     print ("-- "+j)
+    #
+    # print dao.makeFriends('pedro', 'juan')
 
-    # print dao.login(User('juan', 'nauj', 'newior'))
-    # print dao.getUser('juan').ior
-    # print dao.login(User('juan', 'wrong', 'wrong'))
-
-    friendrequests = dao.getRequests('pedro')
+    friendrequests = dao.getFriends('pedro')
     for j in friendrequests:
         print ("-- "+j)
+    friendrequests = dao.getFriends('juan')
+    for j in friendrequests:
+        print ("-- "+j)
+
 
     print("</SQLite Tester>")
