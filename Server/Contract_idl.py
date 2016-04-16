@@ -80,12 +80,13 @@ _0_Messenger.credentials = omniORB.newEmptyClass()
 class credentials (omniORB.StructBase):
     _NP_RepositoryId = "IDL:Messenger/credentials:1.0"
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, IOR):
         self.username = username
         self.password = password
+        self.IOR = IOR
 
 _0_Messenger.credentials = credentials
-_0_Messenger._d_credentials  = (omniORB.tcInternal.tv_struct, credentials, credentials._NP_RepositoryId, "credentials", "username", (omniORB.tcInternal.tv_string,0), "password", (omniORB.tcInternal.tv_string,0))
+_0_Messenger._d_credentials  = (omniORB.tcInternal.tv_struct, credentials, credentials._NP_RepositoryId, "credentials", "username", (omniORB.tcInternal.tv_string,0), "password", (omniORB.tcInternal.tv_string,0), "IOR", (omniORB.tcInternal.tv_string,0))
 _0_Messenger._tc_credentials = omniORB.tcInternal.createTypeCode(_0_Messenger._d_credentials)
 omniORB.registerType(credentials._NP_RepositoryId, _0_Messenger._d_credentials, _0_Messenger._tc_credentials)
 del credentials

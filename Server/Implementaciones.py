@@ -24,11 +24,13 @@ class Server(Messenger__POA.ServerContract):
     def login(self, credentials):
         if self.v:
             print ('-- Intentando login <'+credentials.username+'-'+credentials.password+'>')
+            print ('   IOR: '+credentials.IOR)
         return True
 
     def register(self, credentials):
         if self.v:
             print ('-- Intentando registrar <'+credentials.username+'-'+credentials.password+'>')
+            print ('   IOR: ' + credentials.IOR)
         return True
 
     def getUser(self, username):

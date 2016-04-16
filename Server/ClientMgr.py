@@ -39,8 +39,8 @@ class ClientMgr(object):
 
     def doit(self):
         print("-- Testing the thing")
-        self.server.register(Messenger.credentials("juan", "juan"))
-        self.server.login(Messenger.credentials("juan", "juan"))
+        self.server.register(Messenger.credentials("juan", "juan","IOR"))
+        self.server.login(Messenger.credentials("juan", "juan","IOR"))
         try:
             self.server.getUser("juan")
         except omniORB.CORBA.UNKNOWN:
