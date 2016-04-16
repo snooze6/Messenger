@@ -1,3 +1,6 @@
+import CORBA
+import sys
+
 import Messenger, Messenger__POA
 from Conf import dbpath, op_sucess
 from SQLite import DAO, User
@@ -47,9 +50,25 @@ class Server(Messenger__POA.ServerContract):
     def getUser(self, username):
         if self.v:
             print ('-- Intentando cojer al usuario: <' + username + '>')
-        return None
+        user = self.dao.getUser(username)
+        return self._bindUser(user)
 
     def getFriends(self, username):
         if self.v:
             print ('-- Intentando cojer los amigos de <' + username + '>')
         return [None]
+
+    def _bindUser(self, user):
+        print(user)
+        orb = CORBA.ORB_init(("-ORBInitRef", "NameService=corbaname::127.0.0.1"), CORBA.ORB_ID)
+        ior = user.ior
+        obj = orb.string_to_object(ior)
+        eo = obj._narrow(Messenger.ClientContract)
+        if eo is None:
+            print("++ Object reference is not an User")
+            sys.exit(1)
+        # message = "Hello from Python"
+        # result = eo.echoString(message)
+        # print "I said '%s'. The object said '%s'." % (message, result)
+        return eo
+

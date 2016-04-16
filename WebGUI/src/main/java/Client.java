@@ -74,9 +74,13 @@ public class Client {
         return server.login(new credentials(username, password, IOR));
     }
 
+    public ServerContract getServer() {
+        return server;
+    }
+
     public static void main(String args[]) {
-        Client c = new Client("juan", "nauj");
-        System.out.println(c.login());
+        Client c = new Client("pedro", "pedro");
+        System.out.println(c.getServer().getUser("juan").getName());
     }
 
 }
