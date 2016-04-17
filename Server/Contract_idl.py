@@ -107,6 +107,18 @@ _0_Messenger._tc_usuarios = omniORB.tcInternal.createTypeCode(_0_Messenger._ad_u
 omniORB.registerType(usuarios._NP_RepositoryId, _0_Messenger._ad_usuarios, _0_Messenger._tc_usuarios)
 del usuarios
 
+# typedef ... requests
+class requests:
+    _NP_RepositoryId = "IDL:Messenger/requests:1.0"
+    def __init__(self, *args, **kw):
+        raise RuntimeError("Cannot construct objects of this type.")
+_0_Messenger.requests = requests
+_0_Messenger._d_requests  = (omniORB.tcInternal.tv_sequence, (omniORB.tcInternal.tv_string,0), 0)
+_0_Messenger._ad_requests = (omniORB.tcInternal.tv_alias, requests._NP_RepositoryId, "requests", (omniORB.tcInternal.tv_sequence, (omniORB.tcInternal.tv_string,0), 0))
+_0_Messenger._tc_requests = omniORB.tcInternal.createTypeCode(_0_Messenger._ad_requests)
+omniORB.registerType(requests._NP_RepositoryId, _0_Messenger._ad_requests, _0_Messenger._tc_requests)
+del requests
+
 # interface ServerContract
 _0_Messenger._d_ServerContract = (omniORB.tcInternal.tv_objref, "IDL:Messenger/ServerContract:1.0", "ServerContract")
 omniORB.typeMapping["IDL:Messenger/ServerContract:1.0"] = _0_Messenger._d_ServerContract
@@ -129,6 +141,8 @@ ServerContract._d_login = ((omniORB.typeMapping["IDL:Messenger/credentials:1.0"]
 ServerContract._d_register = ((omniORB.typeMapping["IDL:Messenger/credentials:1.0"], ), (omniORB.tcInternal.tv_boolean, ), None)
 ServerContract._d_getUser = (((omniORB.tcInternal.tv_string,0), ), (omniORB.typeMapping["IDL:Messenger/ClientContract:1.0"], ), None)
 ServerContract._d_getFriends = (((omniORB.tcInternal.tv_string,0), ), (omniORB.typeMapping["IDL:Messenger/usuarios:1.0"], ), None)
+ServerContract._d_makeFriends = (((omniORB.tcInternal.tv_string,0), (omniORB.tcInternal.tv_string,0)), (omniORB.tcInternal.tv_boolean, ), None)
+ServerContract._d_getFriendRequest = (((omniORB.tcInternal.tv_string,0), ), (omniORB.typeMapping["IDL:Messenger/usuarios:1.0"], ), None)
 
 # ServerContract object reference
 class _objref_ServerContract (CORBA.Object):
@@ -149,6 +163,12 @@ class _objref_ServerContract (CORBA.Object):
     def getFriends(self, *args):
         return self._obj.invoke("getFriends", _0_Messenger.ServerContract._d_getFriends, args)
 
+    def makeFriends(self, *args):
+        return self._obj.invoke("makeFriends", _0_Messenger.ServerContract._d_makeFriends, args)
+
+    def getFriendRequest(self, *args):
+        return self._obj.invoke("getFriendRequest", _0_Messenger.ServerContract._d_getFriendRequest, args)
+
 omniORB.registerObjref(ServerContract._NP_RepositoryId, _objref_ServerContract)
 _0_Messenger._objref_ServerContract = _objref_ServerContract
 del ServerContract, _objref_ServerContract
@@ -159,7 +179,7 @@ class ServerContract (PortableServer.Servant):
     _NP_RepositoryId = _0_Messenger.ServerContract._NP_RepositoryId
 
 
-    _omni_op_d = {"login": _0_Messenger.ServerContract._d_login, "register": _0_Messenger.ServerContract._d_register, "getUser": _0_Messenger.ServerContract._d_getUser, "getFriends": _0_Messenger.ServerContract._d_getFriends}
+    _omni_op_d = {"login": _0_Messenger.ServerContract._d_login, "register": _0_Messenger.ServerContract._d_register, "getUser": _0_Messenger.ServerContract._d_getUser, "getFriends": _0_Messenger.ServerContract._d_getFriends, "makeFriends": _0_Messenger.ServerContract._d_makeFriends, "getFriendRequest": _0_Messenger.ServerContract._d_getFriendRequest}
 
 ServerContract._omni_skeleton = ServerContract
 _0_Messenger__POA.ServerContract = ServerContract

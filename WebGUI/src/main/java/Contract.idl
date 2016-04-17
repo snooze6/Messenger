@@ -14,12 +14,17 @@ module Messenger {
   };
 
   typedef sequence<ClientContract> usuarios;
+  typedef sequence<string> requests;
 
   interface ServerContract{
     boolean login(in credentials cred);
     boolean register(in credentials cred);
     ClientContract getUser(in string username);
+    // Soon to be deprecated
     usuarios getFriends(in string username);
+
+    boolean makeFriends(in string user1 , in string user2);
+    requests getFriendRequest(in string user);
   };
 
   interface Echo {

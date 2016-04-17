@@ -1,4 +1,7 @@
 import Messenger.ClientContract;
+import Messenger.credentials;
+
+import java.util.Arrays;
 
 /**
  * Created by snooze on 4/16/16.
@@ -12,6 +15,13 @@ public class Pedro {
         for (ClientContract j:
              pedros) {
             System.out.println(j.getName());
+        }
+
+        System.out.println(c.getServer().register(new credentials("user", "user", "ior")));
+        System.out.println(c.getServer().makeFriends("pedro", "user"));
+        String[] requests = c.getServer().getFriendRequest("user");
+        for (int i=0; i<requests.length; i++){
+            System.out.println(requests[i]);
         }
     }
 }

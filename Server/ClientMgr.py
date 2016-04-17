@@ -47,6 +47,10 @@ class ClientMgr(object):
         except omniORB.CORBA.UNKNOWN:
             print("** No hay usuario")
 
+        arr = self.server.getFriendRequest("user")
+        for j in arr:
+            print(j.getName())
+
 
 if __name__ == "__main__":
     print("< CORBA CLIENT>")

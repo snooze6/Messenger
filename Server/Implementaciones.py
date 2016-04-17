@@ -62,6 +62,19 @@ class Server(Messenger__POA.ServerContract):
             friends.append(self.getUser(j))
         return friends
 
+    def makeFriends(self, user1, user2):
+        if self.v:
+            print ('-- Intentando hacer amigos a <' + user1 + '> y <'+ user2 +'>')
+        return self.dao.makeFriends(user1, user2)==op_sucess
+
+    def getFriendRequest(self, user):
+        if self.v:
+            print ('-- Intentando cojer las peticiones de amistad de de <' + user + '>')
+        friends = []
+        for j in self.dao.getRequests(user):
+            friends.append(self.getUser(j))
+        return friends
+
     def _bindUser(self, user):
         # print(user)
         orb = CORBA.ORB_init(("-ORBInitRef", "NameService=corbaname::127.0.0.1"), CORBA.ORB_ID)
