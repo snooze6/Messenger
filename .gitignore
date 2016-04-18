@@ -3,9 +3,6 @@
 Server/.idea/
 Server/*.pyc
 
-Client/.idea/
-
-WebGui/.idea/
-WebGUI/target/
+javafx/.idea/
 
 *~

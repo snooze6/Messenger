@@ -76,14 +76,16 @@ class Server(Messenger__POA.ServerContract):
         return friends
 
     def _bindUser(self, user):
-        # print(user)
+        print("-- Intento bindear user")
         orb = CORBA.ORB_init(("-ORBInitRef", "NameService=corbaname::127.0.0.1"), CORBA.ORB_ID)
         ior = user.ior
         obj = orb.string_to_object(ior)
         eo = obj._narrow(Messenger.ClientContract)
         if eo is None:
             print("++ Object reference is not an User")
-            sys.exit(1)
+            return None
+        else:
+            print ("-- Todo bien")
         # message = "Hello from Python"
         # result = eo.echoString(message)
         # print "I said '%s'. The object said '%s'." % (message, result)
